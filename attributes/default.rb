@@ -12,6 +12,9 @@ default[:statsd][:graphite_enabled] = true
 default[:statsd][:graphite_port] = 2003
 default[:statsd][:graphite_host] = "localhost"
 
+# This will auto-configure the stackdriver 'source' variable with the instance id, if set
+default[:statsd][:stackdriver_instance_config] = false
+
 #
 # Add all NPM module backends here. Each backend should be a
 # hash of the backend's name to the NPM module's version. If we

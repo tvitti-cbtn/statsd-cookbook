@@ -75,6 +75,10 @@ template "/etc/statsd/config.js" do
     config_hash[:graphiteHost] = node[:statsd][:graphite_host]
   end
 
+  if node[:statsd][:stackdriver_instance_config]
+    config_hash[:stackdriver][:source] = `wget -q -O - http://169.254.169.254/latest/meta-data/instance-id`
+  end
+
   variables(:config_hash => config_hash)
 
   notifies :restart, resources(:service => "statsd")
